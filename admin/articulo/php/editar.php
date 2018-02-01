@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Respuesta editar</title>
+
+<link rel="stylesheet" type="text/css" href="../../styles.css">
+</head>
+<body>
+            
+            <!-- ------------------ PHP ------------------ -->
+            
+<?php
+
+    // Inicializamos y conectamos
+    extract($_POST);
+    require '../../databasename.php';
+    $link = mysqli_connect(ADDRES_SERVER, USER, PASS, SERVERMYSQL);
+
+    // Comprobación de conexión
+    if (mysqli_connect_errno()) {
+        printf("<header>Fallo en la conexión: %s</header>", mysqli_connect_error());
+    }
+    else{
+
+        // Comprobamos que se seleccionen los spinners
+        if(empty($idlinea) || empty($idsubfamilia) || empty($idarticulo)){
+            printf("<header>Debe seleccionar un artículo, su subfamilia y su carrito</header>");
+        }
+        else{
+            // Evitar la inyeccción de codigo y encriptamos
+            $nombre = mysqli_real_escape_string($link, $nombre);
+            $descripcion = mysqli_real_escape_string($link, $descripcion);
+            $precio = mysqli_real_escape_string($link, $precio);
+            $stock = mysqli_real_escape_string($link, $stock);
+
+            // ID a la que se renombra la imagen
+            $maxId=$idarticulo;
+
+            /* ----------- Procesamos la imagen ----------- */
+            $directorioImagenes = RAIZ_WEB."/images/articulos/";
+            $nombreArchivo = $directorioImagenes . basename($_FILES["foto"]["name"]);
+            $tipoImagen = pathinfo($nombreArchivo,PATHINFO_EXTENSION);
+            $nuevoNombre=$maxId.".".$tipoImagen;
+
+            // Movemos al directorio de imagenes y muestra erorr si falla
+            if (!move_uploaded_file($_FILES["foto"]["tmp_name"], $directorioImagenes.$nuevoNombre)) {
+
+                echo "<header>Error subiendo la imagen</header>";
+
+            // Bloque para insertar en base de datos
+            } else {
+
+                // Inserta en la tabla
+                $update="UPDATE ".TABLA_ARTICULO." SET NOMBRE ='$nombre', FOTO='$nuevoNombre', DESCRIPCION='$descripcion', PRECIO='$precio', STOCK='$stock', IDSUBFAMILIA='$idsubfamilia', IDLINEA='$idlinea' WHERE ID='$idarticulo'";
+
+                $resultado = mysqli_query($link, $update);
+
+                // Interpretación de resultados
+                if ($resultado){
+                    echo "<header>Artículo actualizado con éxito</header>";
+                }
+                else{
+                    echo "<header>No fue posible actualizar el artículo.<br>Comprueba las referencias a ID de otras tablas</header>";
+                }
+            }
+        }
+        mysqli_close($link);
+    }
+?>     
+    
+    <!-- ------------------ Fin PHP ------------------ -->
+		
+    <form id="form">
+        <input class="botonAzul" type="button" onclick="location.href='../editar.php';" value="Editar otro artículo" />
+
+        <input id="ultimo" type="button" onclick="location.href='../index.html';" value="Volver a administración de artículos" />
+    </form>
+
+    <canvas></canvas>
+    <script  src="../../index.js"></script>
+    
+</body>
+</html>
