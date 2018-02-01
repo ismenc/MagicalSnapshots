@@ -17,7 +17,7 @@
         }
         else{
         	if(!password_verify($password, $comprobacion)){
-	            printf("<p align=\"center\">Datos <strong>incorrectos.</strong></p>");
+	            printf("<p align=\"center\">Datos de usuario <strong>incorrectos.</strong></p>");
 	        }
 	        else{
 	        	// Crear una sesión
@@ -26,12 +26,13 @@
 				session_start();
 
 				$_SESSION['username'] = $username;
+
+				echo "<p align=\"center\">Bienvenido, <strong>"."$nombre".".</strong></p>";
+				echo "<a href=\"index.php\">Página inicial</a>"
 	        }
     
         }
             
         mysqli_close($link);
     }
-
-	echo "<p align=\"center\">Bienvenido, <strong>"."$nombre".".</strong></p>";
 ?>
