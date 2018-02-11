@@ -7,19 +7,19 @@
 		<meta name="description" content="">
 
         <!-- bootstrap -->
-		<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">      
-		<link href="bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">		
-		<link href="themes/css/bootstrappage.css" rel="stylesheet"/>
+		<link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet">      
+		<link href="../bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">		
+		<link href="../themes/css/bootstrappage.css" rel="stylesheet"/>
 		
 		<!-- global styles -->
-		<link href="themes/css/flexslider.css" rel="stylesheet"/>
-		<link href="themes/css/main.css" rel="stylesheet"/>
+		<link href="../themes/css/flexslider.css" rel="stylesheet"/>
+		<link href="../themes/css/main.css" rel="stylesheet"/>
 
 		<!-- scripts -->
-		<script src="themes/js/jquery-1.7.2.min.js"></script>
-		<script src="bootstrap/js/bootstrap.min.js"></script>				
-		<script src="themes/js/superfish.js"></script>	
-		<script src="themes/js/jquery.scrolltotop.js"></script>
+		<script src="../themes/js/jquery-1.7.2.min.js"></script>
+		<script src="../bootstrap/js/bootstrap.min.js"></script>				
+		<script src="../themes/js/superfish.js"></script>	
+		<script src="../themes/js/jquery.scrolltotop.js"></script>
         <script src='https://www.google.com/recaptcha/api.js'></script>
         
 
@@ -35,17 +35,17 @@
 				<div class="span8">
 					<div class="account pull-right">
 						<ul class="user-menu">				
-							<li><a href="#">Mi cuenta</a></li>
-							<li><a href="cart.html">Carrito</a></li>
-							<li><a href="checkout.html">Caja</a></li>					
-							<li><a href="register.html">Login</a></li>		
+							<li><a href="../#">Mi cuenta</a></li>
+							<li><a href="../cart.html">Carrito</a></li>
+							<li><a href="../checkout.html">Caja</a></li>					
+							<li><a href="../register.html">Login</a></li>		
 						</ul>
 					</div>
 				</div>
 			</div>
 		</div>
         
-        <!-------------------- MENU -------------------->
+        <!-- ================================== MENU ================================== -->
         
 		<div id="wrapper" class="container">
 			<section class="navbar main-menu">
@@ -54,7 +54,7 @@
 					<nav id="menu" class="pull-right">
                         
                         
-						<?php include('muestramenu.php');?>
+						<?php include('muestramenu_alternativo.php');?>
                         
                         
 					</nav>
@@ -65,11 +65,9 @@
 				<h4><span>Registro y Login</span></h4>
 			</section>			
 			<section class="main-content">				
-
-			<!-------------------- CONTENIDO -------------------->
-
 				<div class="row">
 
+					<!-- ================================== Contenido interesante ================================== -->
 
 					<?php
 
@@ -79,8 +77,9 @@
 
 					    
 					    // Elementos del captcha
+					    $sentCaptcha=$_POST["g-recaptcha-response"];
 					    $secretKey = "6LcTuUUUAAAAANW5jhPnFRstntcUgcQbwmq8EBIC";
-					 	$sentCaptcha=$_POST["g-recaptcha-response"];
+					    $url= "https://www.google.com/recaptcha/api/siteverify";
 					 	$infoForGoogle=$url."?secret=".$secretKey."&response=".$sentCaptcha."&remoteip=".$_SERVER['REMOTE_ADDR'];
 
 					 	// Obtenemos captcha
@@ -101,7 +100,6 @@
 
 								// Captcha bien
 								if ($resultado) {
-									require '../admin/databasename.php';
 									$link = mysqli_connect(ADDRES_SERVER, USER, PASS, SERVERMYSQL);
 
 									// Comprobación de conexión
@@ -121,29 +119,33 @@
 							            $provincia = mysqli_real_escape_string($link, $provincia);	
 
 										/* Comprobamos posibles errores (Usuario o email ya existen) */
-								        if(!empty(mysqli_query($link, "SELECT * FROM usuario where USUARIO='$usuario'"))){
+										$comprobacion = mysqli_query($link, "SELECT USUARIO FROM usuario WHERE USUARIO='$usuario'");
+										$row = mysqli_fetch_row($comprobacion);
+								        if($row[0] == $usuario){
 								                printf("<header>El usuario \"$usuario\" ya está registrado.</header><br>
-								                	<a href=\"..\">Volver atrás</a>");
+								                	<p><a href=\"..\">Volver atrás</a></p>");
 								        }
 								        else{
-								            if(!empty(mysqli_query($link, "SELECT * FROM usuario where EMAIL='$email'"))){
+
+
+								        	$comprobacion = $result = mysqli_query($link, "SELECT EMAIL FROM usuario WHERE EMAIL='$email'");
+								        	$row = mysqli_fetch_row($comprobacion);
+								            if($row[0] == $email){
 								            	printf("<header>El email \"$email\" ya está registrado.</header><br>
-								                	<a href=\"..\">Volver atrás</a>");
+								                	<p><a href=\"..\">Volver atrás</a></p>");
 								            }else{
 								                
-								            // Bloque para insertar en base de datos
-								                
-								                // Inserta en la tabla
+								            	// Insertamos en base de datos
 								                $insert="INSERT INTO ".TABLA_USUARIO." (".COLUMNAS_USUARIO.") VALUES ('$usuario','$nombre', '$apellidos', '$email', '$password', '$direccion', '$provincia')";
 
 								                $resultadoInsercion = mysqli_query($link, $insert);
 
 								                // Interpretación de resultados
 								                if ($resultadoInsercion){
-								                    echo "<header>Registro realizado con éxito</header>";
+								                    echo "<header>Registro realizado con éxito. <a href=\"..\">Volver a la página principal</a></header>";
 								                }
 								                else{
-								                    echo "<header>No fue posible registrar el usuario.<br>Comprueba algún campo</header>";
+								                    echo "<header>No fue posible registrar el usuario.<br>Vuelve a <a href=\"../register.php\">registro</a> y comprueba algún campo.</header>";
 								                }
 								            }
 								        }
@@ -165,20 +167,17 @@
 
 
 				</div>
-
-
-
 			</section>			
 			<section id="footer-bar">
 				<div class="row">
 					<div class="span3">
 						<h4>Navegación</h4>
 						<ul class="nav">
-							<li><a href="./index.php">Página principal</a></li>  
-							<li><a href="./about.html">Sobre nosotros</a></li>
-							<li><a href="./contact.html">Contacta</a></li>
-							<li><a href="./cart.html">Carrito</a></li>
-							<li><a href="./register.html">Login</a></li>							
+							<li><a href="../index.php">Página principal</a></li>  
+							<li><a href="../about.html">Sobre nosotros</a></li>
+							<li><a href="../contact.html">Contacta</a></li>
+							<li><a href="../cart.html">Carrito</a></li>
+							<li><a href="../register.html">Login</a></li>							
 						</ul>					
 					</div>
 					<div class="span4">
