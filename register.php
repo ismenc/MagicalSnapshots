@@ -20,8 +20,7 @@
 		<script src="bootstrap/js/bootstrap.min.js"></script>				
 		<script src="themes/js/superfish.js"></script>	
 		<script src="themes/js/jquery.scrolltotop.js"></script>
-        <script src='https://www.google.com/recaptcha/api.js'></script>
-        
+		<script src='https://www.google.com/recaptcha/api.js'></script>
 
 	</head>
     <body>		
@@ -54,7 +53,7 @@
 					<nav id="menu" class="pull-right">
                         
                         
-						<?php include('muestramenu.php');?>
+						<?php include('./php/muestramenu.php');?>
                         
                         
 					</nav>
@@ -71,20 +70,20 @@
                         
                         <!-------------------- LOGIN -------------------->
                         
-						<form action="./logeame.php" method="post">
+						<form action="./php/logeame.php" method="post">
 							<input type="hidden" name="next" value="/">
 							<fieldset>
                                 <br/>
 								<div class="control-group">
 									<label class="control-label">Usuario</label>
 									<div class="controls">
-										<input type="text" placeholder="Nombre de usuario" id="username" class="input-xlarge">
+										<input name="username" type="text" placeholder="Nombre de usuario" id="username" class="input-xlarge" required maxlength="20">
 									</div>
 								</div>
 								<div class="control-group">
 									<label class="control-label">Contraseña</label>
 									<div class="controls">
-										<input type="password" placeholder="Contraseña" id="password" class="input-xlarge">
+										<input name="password" type="password" placeholder="Contraseña" id="password" class="input-xlarge" required maxlength="20">
 									</div>
 								</div>
                                 <br/>
@@ -101,51 +100,51 @@
                         
                         <!-------------------- REGISTRO -------------------->
                         
-						<form action="registrame.php" method="post" class="form-stacked">
+						<form action="./php/registrame.php" method="post" class="form-stacked">
 							<fieldset>
 								<div class="control-group">
 									<label class="control-label">Usuario</label>
 									<div class="controls">
-										<input type="text" placeholder="Nombre de usuario" class="input-xlarge">
+										<input name="usuario" type="text" placeholder="Nombre de usuario" class="input-xlarge" required maxlength="20">
 									</div>
 								</div>
                                 <div class="control-group">
 									<label class="control-label">Nombre</label>
 									<div class="controls">
-										<input type="text" placeholder="Nombre" class="input-xlarge">
+										<input name="nombre" type="text" placeholder="Nombre" class="input-xlarge" required maxlength="20">
 									</div>
 								</div>
                                 <div class="control-group">
 									<label class="control-label">Apellidos</label>
 									<div class="controls">
-										<input type="text" placeholder="Apellidos" class="input-xlarge">
+										<input name="apellidos" type="text" placeholder="Apellidos" class="input-xlarge" required maxlength="50">
 									</div>
 								</div>
 								<div class="control-group">
 									<label class="control-label">Email</label>
 									<div class="controls">
-										<input type="password" placeholder="Dirección de correo" class="input-xlarge">
+										<input name="email" type="text" placeholder="Dirección de correo" class="input-xlarge" required maxlength="50">
 									</div>
 								</div>
 								<div class="control-group">
 									<label class="control-label">Contraseña</label>
 									<div class="controls">
-										<input type="password" placeholder="Contraseña" class="input-xlarge">
+										<input name="password" type="password" placeholder="Contraseña" class="input-xlarge" required maxlength="20">
 									</div>
 								</div>
                                 <div class="control-group">
 									<label class="control-label">Dirección</label>
 									<div class="controls">
-										<input type="text" placeholder="Dirección postal" class="input-xlarge">
+										<input name="direccion" type="text" placeholder="Dirección postal" class="input-xlarge" required maxlength="100">
 									</div>
 								</div>
                                 <div class="control-group">
 									<label class="control-label">Provincia</label>
 									<div class="controls">
-										<input type="text" placeholder="Provincia" class="input-xlarge">
+										<input name="provincia" type="text" placeholder="Provincia" class="input-xlarge" required maxlength="20">
 									</div>
 								</div>
-                                <div class="g-recaptcha" data-sitekey="6LfmxzcUAAAAAC9ggfOo3G1j_RY1C_ACiwFsZ_Y-"></div>
+                                <div class="g-recaptcha" data-sitekey="6LcTuUUUAAAAACInJ8wyIXKwhUQRp4CW_FXOdNQA"></div>
 								<hr>
 								<div class="actions"><input tabindex="9" class="btn btn-inverse large" type="submit" value="Crear cuenta"></div>
 							</fieldset>

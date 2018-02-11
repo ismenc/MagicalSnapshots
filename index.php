@@ -56,7 +56,7 @@
 					<a href="index.php" class="logo pull-left"><img src="themes/images/logo.png" class="site_logo" alt=""></a>
 					<nav id="menu" class="pull-right">
                         
-                       <?php include('muestramenu.php');?>
+                       <?php include('./php/muestramenu.php');?>
                         
 					</nav>
 				</div>
