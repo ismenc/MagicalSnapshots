@@ -1,3 +1,6 @@
+<?php
+	session_start();
+?>
 <!DOCTYPE html>
 <html lang="es">
 	<head>
@@ -39,8 +42,18 @@
 						<ul class="user-menu">				
 							<li><a href="#">Mi cuenta</a></li>
 							<li><a href="cart.html">Carrito</a></li>
-							<li><a href="checkout.html">Caja</a></li>					
-							<li><a href="register.php">Login y registro</a></li>		
+							<li><a href="checkout.html">Caja</a></li>							
+							<?php
+								if(isset($_SESSION['username'])){
+									echo "<li><a href=\"myprofile.php\">Bienvenido ", $_SESSION['username'], "</a></li>";
+									//unset($_SESSION['username']);
+									//header('Location: index.php');
+									echo "<li><a href=\"./php/logout.php\">Logout</a></li>";
+								}
+								else{
+									echo "<li><a href=\"register.php\">Login y registro</a></li>";
+								}
+							?>
 						</ul>
 					</div>
 				</div>

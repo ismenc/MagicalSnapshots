@@ -1,5 +1,7 @@
 <?php
 	ob_start();
+	session_start();
+
 	extract($_POST);
 	require 'database.php';
 	$link = mysqli_connect(ADDRES_SERVER, USER, PASS, SERVERMYSQL);
@@ -25,8 +27,8 @@
 	        else{
 	        	// Crear una sesión HEADERS ALREADY SENT
 	        	session_cache_limiter();
-				session_name('nombre');
-				session_start();
+				//session_name('nombre');
+				
 
 				$_SESSION['username'] = $username;
 
