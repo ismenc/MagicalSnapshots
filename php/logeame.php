@@ -34,6 +34,7 @@
 
 				echo "<p align=\"center\">Bienvenido, <strong>"."$username".".</strong></p>";
 				echo "<a href=\"../index.php\">Página inicial</a>";
+				header('location: ../index.php');
 	        }
     
         }
