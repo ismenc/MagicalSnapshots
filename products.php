@@ -1,14 +1,20 @@
+<?php
+	session_start();
+?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 	<head>
+        <meta http-equiv="pragma" content="no-cache" />
+
 		<meta charset="utf-8">
-		<title>Bootstrap E-commerce Templates</title>
+		<title>MagicalSnapshots</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta name="description" content="">
-		<!--[if ie]><meta content='IE=8' http-equiv='X-UA-Compatible'/><![endif]-->
+        
 		<!-- bootstrap -->
 		<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">      
-		<link href="bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">		
+		<link href="bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
+		
 		<link href="themes/css/bootstrappage.css" rel="stylesheet"/>
 		
 		<!-- global styles -->
@@ -20,147 +26,121 @@
 		<script src="bootstrap/js/bootstrap.min.js"></script>				
 		<script src="themes/js/superfish.js"></script>	
 		<script src="themes/js/jquery.scrolltotop.js"></script>
-		<!--[if lt IE 9]>			
-			<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-			<script src="js/respond.min.js"></script>
-		<![endif]-->
+
+        
 	</head>
     <body>		
 		<div id="top-bar" class="container">
 			<div class="row">
 				<div class="span4">
 					<form method="POST" class="search_form">
-						<input type="text" class="input-block-level search-query" Placeholder="eg. T-sirt">
+						<input type="text" class="input-block-level search-query" Placeholder="Por ejemplo: existe dios?">
 					</form>
 				</div>
 				<div class="span8">
 					<div class="account pull-right">
 						<ul class="user-menu">				
-							<li><a href="#">My Account</a></li>
-							<li><a href="cart.html">Your Cart</a></li>
-							<li><a href="checkout.html">Checkout</a></li>					
-							<li><a href="register.html">Login</a></li>			
+							<li><a href="#">Mi cuenta</a></li>
+							<li><a href="cart.html">Carrito</a></li>
+							<li><a href="checkout.html">Caja</a></li>							
+							<?php
+								if(isset($_SESSION['username'])){
+									echo "<li><a href=\"myprofile.php\">Bienvenido ", $_SESSION['username'], "</a></li>";
+									//unset($_SESSION['username']);
+									//header('Location: index.php');
+									echo "<li><a href=\"./php/logout.php\">Logout</a></li>";
+								}
+								else{
+									echo "<li><a href=\"register.php\">Login y registro</a></li>";
+								}
+							?>
 						</ul>
 					</div>
 				</div>
 			</div>
 		</div>
-		<div id="wrapper" class="container">
-			<section class="navbar main-menu">
+        
+        <!-------------------- NAVEGACIÓN -------------------->
+        
+		<div id="wrapper" class="container">            
+            
+            <section class="navbar main-menu">
 				<div class="navbar-inner main-menu">				
-					<a href="index.html" class="logo pull-left"><img src="themes/images/logo.png" class="site_logo" alt=""></a>
+					<a href="index.php" class="logo pull-left"><img src="themes/images/logo.png" class="site_logo" alt=""></a>
 					<nav id="menu" class="pull-right">
-						<ul>
-							<li><a href="./products.html">Woman</a>					
-								<ul>
-									<li><a href="./products.html">Lacinia nibh</a></li>									
-									<li><a href="./products.html">Eget molestie</a></li>
-									<li><a href="./products.html">Varius purus</a></li>									
-								</ul>
-							</li>															
-							<li><a href="./products.html">Man</a></li>			
-							<li><a href="./products.html">Sport</a>
-								<ul>									
-									<li><a href="./products.html">Gifts and Tech</a></li>
-									<li><a href="./products.html">Ties and Hats</a></li>
-									<li><a href="./products.html">Cold Weather</a></li>
-								</ul>
-							</li>							
-							<li><a href="./products.html">Hangbag</a></li>
-							<li><a href="./products.html">Best Seller</a></li>
-							<li><a href="./products.html">Top Seller</a></li>
-						</ul>
+                        
+                       <?php include('muestramenu.php');?>
+                        
 					</nav>
 				</div>
-			</section>	
+			</section>
+
+
+			<!-- ------------------------------------ Contenido ------------------------------------ -->
+
+
 			<section class="header_text sub">
 			<img class="pageBanner" src="themes/images/pageBanner.png" alt="New products" >
-				<h4><span>New products</span></h4>
+				<h4><span>Nuestras fotos</span></h4>
 			</section>
 			<section class="main-content">
 				
 				<div class="row">						
 					<div class="span9">								
 						<ul class="thumbnails listing-products">
-							<li class="span3">
-								<div class="product-box">
-									<span class="sale_tag"></span>												
-									<a href="product_detail.html"><img alt="" src="themes/images/ladies/9.jpg"></a><br/>
-									<a href="product_detail.html" class="title">Fusce id molestie massa</a><br/>
-									<a href="#" class="category">Phasellus consequat</a>
-									<p class="price">$341</p>
-								</div>
-							</li>       
-							<li class="span3">
-								<div class="product-box">												
-									<a href="product_detail.html"><img alt="" src="themes/images/ladies/8.jpg"></a><br/>
-									<a href="product_detail.html" class="title">Praesent tempor sem</a><br/>
-									<a href="#" class="category">Erat gravida</a>
-									<p class="price">$28</p>
-								</div>
-							</li>
-							<li class="span3">
-								<div class="product-box">
-									<span class="sale_tag"></span>												
-									<a href="product_detail.html"><img alt="" src="themes/images/ladies/7.jpg"></a><br/>
-									<a href="product_detail.html" class="title">Wuam ultrices rutrum</a><br/>
-									<a href="#" class="category">Suspendisse aliquet</a>
-									<p class="price">$341</p>
-								</div>
-							</li>
-							<li class="span3">
-								<div class="product-box">												
-									<span class="sale_tag"></span>
-									<a href="product_detail.html"><img alt="" src="themes/images/ladies/6.jpg"></a><br/>
-									<a href="product_detail.html" class="title">Praesent tempor sem sodales</a><br/>
-									<a href="#" class="category">Nam imperdiet</a>
-									<p class="price">$49</p>
-								</div>
-							</li>
-							<li class="span3">
-								<div class="product-box">                                        												
-									<a href="product_detail.html"><img alt="" src="themes/images/ladies/1.jpg"></a><br/>
-									<a href="product_detail.html" class="title">Fusce id molestie massa</a><br/>
-									<a href="#" class="category">Congue diam congue</a>
-									<p class="price">$35</p>
-								</div>
-							</li>       
-							<li class="span3">
-								<div class="product-box">												
-									<a href="product_detail.html"><img alt="" src="themes/images/ladies/2.jpg"></a><br/>
-									<a href="product_detail.html" class="title">Tempor sem sodales</a><br/>
-									<a href="#" class="category">Gravida placerat</a>
-									<p class="price">$61</p>
-								</div>
-							</li>
-							<li class="span3">
-								<div class="product-box">												
-									<a href="product_detail.html"><img alt="" src="themes/images/ladies/3.jpg"></a><br/>
-									<a href="product_detail.html" class="title">Quam ultrices rutrum</a><br/>
-									<a href="#" class="category">Orci et nisl iaculis</a>
-									<p class="price">$233</p>
-								</div>
-							</li>
-							<li class="span3">
-								<div class="product-box">												
-									<a href="product_detail.html"><img alt="" src="themes/images/ladies/4.jpg"></a><br/>
-									<a href="product_detail.html" class="title">Tempor sem sodales</a><br/>
-									<a href="#" class="category">Urna nec lectus mollis</a>
-									<p class="price">$134</p>
-								</div>
-							</li>
-							<li class="span3">
-								<div class="product-box">												
-									<a href="product_detail.html"><img alt="" src="themes/images/ladies/5.jpg"></a><br/>
-									<a href="product_detail.html" class="title">Luctus quam ultrices</a><br/>
-									<a href="#" class="category">Suspendisse aliquet</a>
-									<p class="price">$261</p>
-								</div>
-							</li>
+
+							<?php
+								extract($_GET);
+								require('php/database.php');
+						        // Guarda la contraseña archivo. Para no cambiar todos los mysqli
+						        $link = mysqli_connect(ADDRES_SERVER, USER, PASS, SERVERMYSQL);
+						        if (mysqli_connect_errno()) {
+						                printf("<header>Fallo en la conexión: %s</header>", mysqli_connect_error());
+						        }
+						        else{
+
+						        	if(!isset($pag))
+						        		$pag=0;
+
+						        	$artPorPag = 3;
+						        	$paginas = mysqli_fetch_row(mysqli_query($link, "SELECT COUNT(ID) FROM ".TABLA_ARTICULO));
+
+						            // Consultamos y recorremos los articulos
+						            $consultaArticulo="SELECT ID, FOTO, NOMBRE, DESCRIPCION, PRECIO FROM ".TABLA_ARTICULO." LIMIT ".$artPorPag." OFFSET ".($artPorPag*$pag);
+						            if ($result = mysqli_query($link, $consultaArticulo)) { 
+						                while ($row = mysqli_fetch_row($result)) {
+						                    ?><li class="span3">
+												<div class="product-box">
+													<span class="sale_tag"></span>												
+													<a href=<?php echo "\"product_detail.php?id=".$row[0]."\""; ?>><img alt="" src=<?php echo "\"admin/images/articulos/".$row[1]."\""; ?>></a><br/>
+													<a href=<?php echo "\"product_detail.php?id=".$row[0]."\""; ?> class="title"><?php echo $row[2]; ?></a><br/>
+													<!--a href="#" class="category">Phasellus consequat</a-->
+													<p class="price"><?php echo $row[4]; ?> €</p>
+												</div>
+											</li> 
+
+											<?php
+
+						                }
+						                mysqli_free_result($result);
+						            }
+						            mysqli_close($link);
+						        }
+							?>
+							      
+							
 						</ul>								
 						<hr>
 						<div class="pagination pagination-small pagination-centered">
 							<ul>
+							<?php
+								for ($i=0; $i < $paginas ; $i++){
+									if($i==$pag)
+										echo "<li class=\"active\"><a href=\"products?pag=".$i."\">1</a></li>";
+									else
+										echo "<li><a href=\"products?pag=".$i."\">1</a></li>";
+								}
+							?>
 								<li><a href="#">Prev</a></li>
 								<li class="active"><a href="#">1</a></li>
 								<li><a href="#">2</a></li>

@@ -96,16 +96,13 @@
 		            $consultaArticulo="SELECT ID, FOTO, NOMBRE, DESCRIPCION, PRECIO, STOCK FROM ".TABLA_ARTICULO." WHERE ID=".$id;
 		            $result = mysqli_query($link, $consultaArticulo);
 		            $articulo = mysqli_fetch_row($result);
-		            if (!empty($articulo)) { 
+		            if (empty($articulo)) { 
+		            	echo "<br/><h4><span>No existe el producto solicitado</span></h4><br/>";
+		            }else{
 		            	echo "<h4><span>Detalles del producto</span></h4>";
 		            	mysqli_free_result($result);
-		            }else{
-		            	echo "<h4><span>No existe el producto solicitado</span></h4>";
-		            }
-		            mysqli_close($link);
-		        }
-			?>
-			</section>
+		           ?>
+		    </section>
 			<section class="main-content">				
 				<div class="row">						
 					<div class="span9">
@@ -146,13 +143,13 @@
 
 							<div class="span5">
 								<form class="form-inline">
-									<label class="checkbox">
+									<!--label class="checkbox">
 										<input type="checkbox" value=""> Option one is this and that
-									</label>
+									</label-->
 									<br/>
-									<label class="checkbox">
+									<!--label class="checkbox">
 									  <input type="checkbox" value=""> Be sure to include why it's great
-									</label>
+									</label-->
 									<p>&nbsp;</p>
 									<label>Qty:</label>
 									<input type="text" class="span1" placeholder="1">
@@ -223,7 +220,7 @@
 											            }
 											            mysqli_close($link);
 											        }
-												?>											
+												?>
 											</ul>
 										</div>
 										<div class="item">
@@ -260,6 +257,7 @@
 							</div>
 						</div>
 					</div>
+
 					<div class="span3 col">
 						<div class="block">	
 							<ul class="nav nav-list">
@@ -342,7 +340,12 @@
 						</div>
 					</div>
 				</div>
-			</section>			
+			</section>	
+			<?php 
+					}
+		            mysqli_close($link);
+		        }
+			?>		
 			<section id="footer-bar">
 				<div class="row">
 					<div class="span3">
