@@ -46,8 +46,6 @@
 							<?php
 								if(isset($_SESSION['username'])){
 									echo "<li><a href=\"myprofile.php\">Bienvenido ", $_SESSION['username'], "</a></li>";
-									//unset($_SESSION['username']);
-									//header('Location: index.php');
 									echo "<li><a href=\"./php/logout.php\">Logout</a></li>";
 								}
 								else{
@@ -69,7 +67,7 @@
 					<a href="index.php" class="logo pull-left"><img src="themes/images/logo.png" class="site_logo" alt=""></a>
 					<nav id="menu" class="pull-right">
                         
-                       <?php include('muestramenu.php');?>
+                       <?php include('php/muestramenu.php');?>
                         
 					</nav>
 				</div>
@@ -91,7 +89,6 @@
 
 							<?php
 								extract($_GET);
-								require('php/database.php');
 						        // Guarda la contraseña archivo. Para no cambiar todos los mysqli
 						        $link = mysqli_connect(ADDRES_SERVER, USER, PASS, SERVERMYSQL);
 						        if (mysqli_connect_errno()) {
@@ -101,12 +98,18 @@
 
 						        	if(!isset($pag))
 						        		$pag=0;
+						        	if(isset($cat))
+						        		$where = " WHERE IDSUBFAMILIA='$cat' ";
+						        	else
+						        		$where = "";
 
-						        	$artPorPag = 3;
-						        	$paginas = mysqli_fetch_row(mysqli_query($link, "SELECT COUNT(ID) FROM ".TABLA_ARTICULO));
+						        	$artPorPag = 6;
+						        	$totalArticulos = mysqli_fetch_row(mysqli_query($link, "SELECT COUNT(ID) FROM ".TABLA_ARTICULO.$where));
+						        	$paginas = $totalArticulos[0]/$artPorPag;
+
 
 						            // Consultamos y recorremos los articulos
-						            $consultaArticulo="SELECT ID, FOTO, NOMBRE, DESCRIPCION, PRECIO FROM ".TABLA_ARTICULO." LIMIT ".$artPorPag." OFFSET ".($artPorPag*$pag);
+						            $consultaArticulo="SELECT ID, FOTO, NOMBRE, DESCRIPCION, PRECIO FROM ".TABLA_ARTICULO.$where." LIMIT ".$artPorPag." OFFSET ".($artPorPag*$pag);
 						            if ($result = mysqli_query($link, $consultaArticulo)) { 
 						                while ($row = mysqli_fetch_row($result)) {
 						                    ?><li class="span3">
@@ -136,17 +139,17 @@
 							<?php
 								for ($i=0; $i < $paginas ; $i++){
 									if($i==$pag)
-										echo "<li class=\"active\"><a href=\"products?pag=".$i."\">1</a></li>";
+										echo "<li class=\"active\"><a href=\"products.php?pag=".$i."\">".$i."</a></li>";
 									else
-										echo "<li><a href=\"products?pag=".$i."\">1</a></li>";
+										echo "<li><a href=\"products.php?pag=".$i."\">".$i."</a></li>";
 								}
 							?>
-								<li><a href="#">Prev</a></li>
+								<!--li><a href="#">Prev</a></li>
 								<li class="active"><a href="#">1</a></li>
 								<li><a href="#">2</a></li>
 								<li><a href="#">3</a></li>
 								<li><a href="#">4</a></li>
-								<li><a href="#">Next</a></li>
+								<li><a href="#">Next</a></li-->
 							</ul>
 						</div>
 					</div>

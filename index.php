@@ -122,7 +122,7 @@
                                     
                                     <!-------------------- DESTACADOS -------------------->
                                     
-									<span class="pull-left"><span class="text"><span class="line">Feature <strong>Products</strong></span></span></span>
+									<span class="pull-left"><span class="text"><span class="line">Productos <strong>destacados</strong></span></span></span>
 									<span class="pull-right">
 										<a class="left button" href="#myCarousel" data-slide="prev"></a><a class="right button" href="#myCarousel" data-slide="next"></a>
 									</span>
@@ -144,46 +144,36 @@
 											            if ($result = mysqli_query($link, $consultaArticulo)) { 
 											                while ($row = mysqli_fetch_row($result)) {
 											                    echo "<li class=\"span3\"><div class=\"product-box\"><span class=\"sale_tag\"></span>";
-											                    echo "<p><a href=\"../product_detail.php?id=".$row[0];
+											                    echo "<p><a href=\"./product_detail.php?id=".$row[0];
 											                    echo "\"><img src=\"admin/images/articulos/".$row[1];
 											                    echo "\" alt=\"\" /></a></p>";
-											                    echo "<a href=\"../product_detail.php?id=".$row[0]."\" class=\"title\">".$row[2]."</a><br/>";
-											                    echo "<a href=\"../product_detail.php?id=".$row[0]."\" class=\"category\">".$row[3]."</a>";
+											                    echo "<a href=\"./product_detail.php?id=".$row[0]."\" class=\"title\">".$row[2]."</a><br/>";
+											                    echo "<a href=\"./product_detail.php?id=".$row[0]."\" class=\"category\">".$row[3]."</a>";
 											                    echo "<p class=\"price\">".$row[4]." €</p></div></li>";
 											                }
-											                mysqli_free_result($result);
 											            }
-											            mysqli_close($link);
-											        }
+											            
 												?>
 											</ul>
 										</div>
 										<div class="item">
 											<ul class="thumbnails">
 												<?php
-											        // Guarda la contraseña archivo. Para no cambiar todos los mysqli
-											        $link = mysqli_connect(ADDRES_SERVER, USER, PASS, SERVERMYSQL);
-											        if (mysqli_connect_errno()) {
-											                printf("<header>Fallo en la conexión: %s</header>", mysqli_connect_error());
-											        }
-											        else{
-
+											        
 											            // Consultamos y recorremos los articulos
 											            $consultaArticulo="SELECT ID, FOTO, NOMBRE, DESCRIPCION, PRECIO FROM ".TABLA_ARTICULO." LIMIT 4 OFFSET 4";
 											            if ($result = mysqli_query($link, $consultaArticulo)) { 
 											                while ($row = mysqli_fetch_row($result)) {
 											                    echo "<li class=\"span3\"><div class=\"product-box\"><span class=\"sale_tag\"></span>";
-											                    echo "<p><a href=\"../product_detail.php?id=".$row[0];
+											                    echo "<p><a href=\"./product_detail.php?id=".$row[0];
 											                    echo "\"><img src=\"admin/images/articulos/".$row[1];
 											                    echo "\" alt=\"\" /></a></p>";
-											                    echo "<a href=\"../product_detail.php?id=".$row[0]."\" class=\"title\">".$row[2]."</a><br/>";
-											                    echo "<a href=\"../product_detail.php?id=".$row[0]."\" class=\"category\">".$row[3]."</a>";
+											                    echo "<a href=\"./product_detail.php?id=".$row[0]."\" class=\"title\">".$row[2]."</a><br/>";
+											                    echo "<a href=\"./product_detail.php?id=".$row[0]."\" class=\"category\">".$row[3]."</a>";
 											                    echo "<p class=\"price\">".$row[4]." €</p></div></li>";
 											                }
-											                mysqli_free_result($result);
 											            }
-											            mysqli_close($link);
-											        }
+											            
 												?>																																	
 											</ul>
 										</div>
@@ -198,7 +188,7 @@
                                     
                                     <!-------------------- RECIENTES -------------------->
 
-									<span class="pull-left"><span class="text"><span class="line">Latest <strong>Products</strong></span></span></span>
+									<span class="pull-left"><span class="text"><span class="line">Últimos <strong>lanzamientos</strong></span></span></span>
 									<span class="pull-right">
 										<a class="left button" href="#myCarousel-2" data-slide="prev"></a><a class="right button" href="#myCarousel-2" data-slide="next"></a>
 									</span>
@@ -207,75 +197,46 @@
 									<div class="carousel-inner">
 										<div class="active item">
 											<ul class="thumbnails">												
-												<li class="span3">
-													<div class="product-box">
-														<span class="sale_tag"></span>
-														<p><a href="product_detail.html"><img src="themes/images/cloth/bootstrap-women-ware2.jpg" alt="" /></a></p>
-														<a href="product_detail.html" class="title">Ut wisi enim ad</a><br/>
-														<a href="products.html" class="category">Commodo consequat</a>
-														<p class="price">$25.50</p>
-													</div>
-												</li>
-												<li class="span3">
-													<div class="product-box">
-														<p><a href="product_detail.html"><img src="themes/images/cloth/bootstrap-women-ware1.jpg" alt="" /></a></p>
-														<a href="product_detail.html" class="title">Quis nostrud exerci tation</a><br/>
-														<a href="products.html" class="category">Quis nostrud</a>
-														<p class="price">$17.55</p>
-													</div>
-												</li>
-												<li class="span3">
-													<div class="product-box">
-														<p><a href="product_detail.html"><img src="themes/images/cloth/bootstrap-women-ware6.jpg" alt="" /></a></p>
-														<a href="product_detail.html" class="title">Know exactly turned</a><br/>
-														<a href="products.html" class="category">Quis nostrud</a>
-														<p class="price">$25.30</p>
-													</div>
-												</li>
-												<li class="span3">
-													<div class="product-box">
-														<p><a href="product_detail.html"><img src="themes/images/cloth/bootstrap-women-ware5.jpg" alt="" /></a></p>
-														<a href="product_detail.html" class="title">You think fast</a><br/>
-														<a href="products.html" class="category">World once</a>
-														<p class="price">$25.60</p>
-													</div>
-												</li>
+												<?php
+											        
+											            // Consultamos y recorremos los articulos
+											            $consultaArticulo="SELECT ID, FOTO, NOMBRE, DESCRIPCION, PRECIO FROM ".TABLA_ARTICULO." ORDER BY ID DESC LIMIT 4";
+											            if ($result = mysqli_query($link, $consultaArticulo)) { 
+											                while ($row = mysqli_fetch_row($result)) {
+											                    echo "<li class=\"span3\"><div class=\"product-box\"><span class=\"sale_tag\"></span>";
+											                    echo "<p><a href=\"./product_detail.php?id=".$row[0];
+											                    echo "\"><img src=\"admin/images/articulos/".$row[1];
+											                    echo "\" alt=\"\" /></a></p>";
+											                    echo "<a href=\"./product_detail.php?id=".$row[0]."\" class=\"title\">".$row[2]."</a><br/>";
+											                    echo "<a href=\"./product_detail.php?id=".$row[0]."\" class=\"category\">".$row[3]."</a>";
+											                    echo "<p class=\"price\">".$row[4]." €</p></div></li>";
+											                }
+											            }
+											            
+												?>
 											</ul>
 										</div>
 										<div class="item">
 											<ul class="thumbnails">
-												<li class="span3">
-													<div class="product-box">
-														<p><a href="product_detail.html"><img src="themes/images/cloth/bootstrap-women-ware4.jpg" alt="" /></a></p>
-														<a href="product_detail.html" class="title">Know exactly</a><br/>
-														<a href="products.html" class="category">Quis nostrud</a>
-														<p class="price">$45.50</p>
-													</div>
-												</li>
-												<li class="span3">
-													<div class="product-box">
-														<p><a href="product_detail.html"><img src="themes/images/cloth/bootstrap-women-ware3.jpg" alt="" /></a></p>
-														<a href="product_detail.html" class="title">Ut wisi enim ad</a><br/>
-														<a href="products.html" class="category">Commodo consequat</a>
-														<p class="price">$33.50</p>
-													</div>
-												</li>
-												<li class="span3">
-													<div class="product-box">
-														<p><a href="product_detail.html"><img src="themes/images/cloth/bootstrap-women-ware2.jpg" alt="" /></a></p>
-														<a href="product_detail.html" class="title">You think water</a><br/>
-														<a href="products.html" class="category">World once</a>
-														<p class="price">$45.30</p>
-													</div>
-												</li>
-												<li class="span3">
-													<div class="product-box">
-														<p><a href="product_detail.html"><img src="themes/images/cloth/bootstrap-women-ware1.jpg" alt="" /></a></p>
-														<a href="product_detail.html" class="title">Quis nostrud exerci</a><br/>
-														<a href="products.html" class="category">Quis nostrud</a>
-														<p class="price">$25.20</p>
-													</div>
-												</li>																																	
+												<?php
+											        
+											            // Consultamos y recorremos los articulos
+											            $consultaArticulo="SELECT ID, FOTO, NOMBRE, DESCRIPCION, PRECIO FROM ".TABLA_ARTICULO." ORDER BY ID DESC LIMIT 4 OFFSET 4";
+											            if ($result = mysqli_query($link, $consultaArticulo)) { 
+											                while ($row = mysqli_fetch_row($result)) {
+											                    echo "<li class=\"span3\"><div class=\"product-box\"><span class=\"sale_tag\"></span>";
+											                    echo "<p><a href=\"./product_detail.php?id=".$row[0];
+											                    echo "\"><img src=\"admin/images/articulos/".$row[1];
+											                    echo "\" alt=\"\" /></a></p>";
+											                    echo "<a href=\"./product_detail.php?id=".$row[0]."\" class=\"title\">".$row[2]."</a><br/>";
+											                    echo "<a href=\"./product_detail.php?id=".$row[0]."\" class=\"category\">".$row[3]."</a>";
+											                    echo "<p class=\"price\">".$row[4]." €</p></div></li>";
+											                }
+											                mysqli_free_result($result);
+											            }
+											            mysqli_close($link);
+											        }
+												?>																																		
 											</ul>
 										</div>
 									</div>							
@@ -320,7 +281,7 @@
             
             <!-------------------- PROVEEDORES -------------------->
             
-			<section class="our_client">
+			<!--section class="our_client">
 				<h4 class="title"><span class="text">Proveedores</span></h4>
 				<div class="row">					
 					<div class="span2">
@@ -342,7 +303,7 @@
 						<a href="#"><img alt="" src="themes/images/clients/4.png"></a>
 					</div>
 				</div>
-			</section>
+			</section-->
             
             <!-------------------- NAVEGACIÓN INFERIOR -------------------->
             
