@@ -98,10 +98,20 @@
 
 						        	if(!isset($pag))
 						        		$pag=0;
-						        	if(isset($cat))
+						        	if(isset($cat)){
+						        		$cat = mysqli_real_escape_string($link, $cat);
 						        		$where = " WHERE IDSUBFAMILIA='$cat' ";
-						        	else
+						        	} else
 						        		$where = "";
+						        	if(isset($titulo)){
+						        		$titulo = mysqli_real_escape_string($link, $titulo);
+						        		if(!empty($where)){
+						        			$where = "$where AND NOMBRE LIKE '%$titulo%'";
+						        		}
+						        		else
+						        			$where = " WHERE NOMBRE LIKE '%$titulo%'";
+						        	}
+						        	echo $where;
 
 						        	$artPorPag = 6;
 						        	$totalArticulos = mysqli_fetch_row(mysqli_query($link, "SELECT COUNT(ID) FROM ".TABLA_ARTICULO.$where));
@@ -153,7 +163,7 @@
 							</ul>
 						</div>
 					</div>
-					<div class="span3 col">
+					<!--div class="span3 col">
 						<div class="block">	
 							<ul class="nav nav-list">
 								<li class="nav-header">SUB CATEGORIES</li>
@@ -233,7 +243,7 @@
 								</li>   
 							</ul>
 						</div>
-					</div>
+					</div-->
 				</div>
 			</section>
 			<section id="footer-bar">
