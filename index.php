@@ -33,8 +33,8 @@
 		<div id="top-bar" class="container">
 			<div class="row">
 				<div class="span4">
-					<form method="POST" class="search_form">
-						<input type="text" class="input-block-level search-query" Placeholder="Por ejemplo: existe dios?">
+					<form method="GET" class="search_form" action="products.php">
+						<input type="text" name="titulo" class="input-block-level search-query" Placeholder="Por ejemplo: existe dios?">
 					</form>
 				</div>
 				<div class="span8">
