@@ -142,7 +142,7 @@
 							<!-- ------------------------------------- Formulario de compra ------------------------------------- -->
 
 							<div class="span5">
-								<form class="form-inline">
+								<form class="form-inline" action="php/agregar_al_carro.php" method="POST">
 									<!--label class="checkbox">
 										<input type="checkbox" value=""> Option one is this and that
 									</label-->
@@ -152,7 +152,8 @@
 									</label-->
 									<p>&nbsp;</p>
 									<label>Qty:</label>
-									<input type="text" class="span1" placeholder="1">
+									<?php echo '<input type="hidden" name="id" value="'.$articulo[0].'">'; ?>
+									<input type="text" name="cantidad" class="span1" placeholder="1">
 									<button class="btn btn-inverse" type="submit">Añadir al carro</button>
 								</form>
 							</div>							
@@ -258,7 +259,7 @@
 						</div>
 					</div>
 
-					<div class="span3 col">
+					<!--div class="span3 col">
 						<div class="block">	
 							<ul class="nav nav-list">
 								<li class="nav-header">SUB CATEGORIES</li>
@@ -338,7 +339,7 @@
 								</li>   
 							</ul>
 						</div>
-					</div>
+					</div-->
 				</div>
 			</section>	
 			<?php 

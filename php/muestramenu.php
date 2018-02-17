@@ -14,14 +14,14 @@
                 echo"<ul>\n";
                 while ($row = mysqli_fetch_row($result)) {
                     // Imprime familia
-                    echo "\t<li><a href=\"./products.php\" target=\"_top\">".$row[1]."</a>\n";
+                    echo "\t<li><a href=\"./products.php?cat=".$row[0]."\" target=\"_top\">".$row[1]."</a>\n";
                     
                     // Recorre e imprime subfamilias de esa familia
                     $consultaSubamilia="SELECT ID, NOMBRE FROM ".TABLA_SUBFAMILIA." WHERE IDFAMILIA=".$row[0];
                     if($result2 = mysqli_query($link, $consultaSubamilia)){
                         echo"\t\t<ul>\n";
                         while ($row2 = mysqli_fetch_row($result2)) {
-                            echo "\t\t\t<li><a href=\"./products.php?cat=".$row2[0]."\" target=\"_top\">".$row2[1]."</a></li>\n";
+                            echo "\t\t\t<li><a href=\"./products.php?subcat=".$row2[0]."\" target=\"_top\">".$row2[1]."</a></li>\n";
                         }
                         echo"\t\t</ul>\n\t</li>\n";
                         mysqli_free_result($result2);

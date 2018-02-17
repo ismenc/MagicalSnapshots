@@ -41,7 +41,7 @@
 					<div class="account pull-right">
 						<ul class="user-menu">				
 							<li><a href="#">Mi cuenta</a></li>
-							<li><a href="cart.html">Carrito</a></li>
+							<li><a href="ver_carrito.php">Carrito</a></li>
 							<li><a href="checkout.html">Caja</a></li>							
 							<?php
 								if(isset($_SESSION['username'])){

@@ -25,7 +25,6 @@
 								                	<a href=\"..\">Volver atrás</a></p>");
 	        }
 	        else{
-	        	// Crear una sesión HEADERS ALREADY SENT
 	        	session_cache_limiter();
 				//session_name('nombre');
 				
