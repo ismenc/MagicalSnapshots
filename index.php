@@ -44,12 +44,12 @@
 							<li><a href="ver_carrito.php">Carrito</a></li>
 							<li><a href="checkout.html">Caja</a></li>							
 							<?php
-								if(isset($_SESSION['username'])){
-									echo "<li><a href=\"myprofile.php\">Bienvenido ", $_SESSION['username'], "</a></li>";
-									//unset($_SESSION['username']);
-									//header('Location: index.php');
+								if(isset($_SESSION['username']))
+									echo "<li><a>Bienvenido ", $_SESSION['username'], "</a></li>";
+								if(isset($_SESSION['admin']))
+									echo "<li><a href=\"admin/index.php\">Administración</a></li>";
+								if(isset($_SESSION['username']))
 									echo "<li><a href=\"./php/logout.php\">Logout</a></li>";
-								}
 								else{
 									echo "<li><a href=\"register.php\">Login y registro</a></li>";
 								}
@@ -140,7 +140,7 @@
 											        else{
 
 											            // Consultamos y recorremos los articulos
-											            $consultaArticulo="SELECT ID, FOTO, NOMBRE, DESCRIPCION, PRECIO FROM ".TABLA_ARTICULO." LIMIT 4";
+											            $consultaArticulo="SELECT ID, FOTO, NOMBRE, LEFT(DESCRIPCION, 25), PRECIO FROM ".TABLA_ARTICULO." LIMIT 4";
 											            if ($result = mysqli_query($link, $consultaArticulo)) { 
 											                while ($row = mysqli_fetch_row($result)) {
 											                    echo "<li class=\"span3\"><div class=\"product-box\"><span class=\"sale_tag\"></span>";
@@ -161,7 +161,7 @@
 												<?php
 											        
 											            // Consultamos y recorremos los articulos
-											            $consultaArticulo="SELECT ID, FOTO, NOMBRE, DESCRIPCION, PRECIO FROM ".TABLA_ARTICULO." LIMIT 4 OFFSET 4";
+											            $consultaArticulo="SELECT ID, FOTO, NOMBRE, LEFT(DESCRIPCION, 25), PRECIO FROM ".TABLA_ARTICULO." LIMIT 4 OFFSET 4";
 											            if ($result = mysqli_query($link, $consultaArticulo)) { 
 											                while ($row = mysqli_fetch_row($result)) {
 											                    echo "<li class=\"span3\"><div class=\"product-box\"><span class=\"sale_tag\"></span>";
@@ -200,7 +200,7 @@
 												<?php
 											        
 											            // Consultamos y recorremos los articulos
-											            $consultaArticulo="SELECT ID, FOTO, NOMBRE, DESCRIPCION, PRECIO FROM ".TABLA_ARTICULO." ORDER BY ID DESC LIMIT 4";
+											            $consultaArticulo="SELECT ID, FOTO, NOMBRE, LEFT(DESCRIPCION, 25), PRECIO FROM ".TABLA_ARTICULO." ORDER BY ID DESC LIMIT 4";
 											            if ($result = mysqli_query($link, $consultaArticulo)) { 
 											                while ($row = mysqli_fetch_row($result)) {
 											                    echo "<li class=\"span3\"><div class=\"product-box\"><span class=\"sale_tag\"></span>";
@@ -221,7 +221,7 @@
 												<?php
 											        
 											            // Consultamos y recorremos los articulos
-											            $consultaArticulo="SELECT ID, FOTO, NOMBRE, DESCRIPCION, PRECIO FROM ".TABLA_ARTICULO." ORDER BY ID DESC LIMIT 4 OFFSET 4";
+											            $consultaArticulo="SELECT ID, FOTO, NOMBRE, LEFT(DESCRIPCION, 25), PRECIO FROM ".TABLA_ARTICULO." ORDER BY ID DESC LIMIT 4 OFFSET 4";
 											            if ($result = mysqli_query($link, $consultaArticulo)) { 
 											                while ($row = mysqli_fetch_row($result)) {
 											                    echo "<li class=\"span3\"><div class=\"product-box\"><span class=\"sale_tag\"></span>";

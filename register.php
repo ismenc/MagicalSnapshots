@@ -90,7 +90,6 @@
 								<div class="control-group">
 									<input tabindex="3" class="btn btn-inverse large" type="submit" value="Entrar en tu cuenta">
 									<hr>
-									<p class="reset">Recuperar <a tabindex="4" href="#" title="Recover your username or password">usuario o contraseña</a></p>
 								</div>
 							</fieldset>
 						</form>				

@@ -136,7 +136,7 @@
 								            }else{
 								                
 								            	// Insertamos en base de datos
-								                $insert="INSERT INTO ".TABLA_USUARIO." (".COLUMNAS_USUARIO.") VALUES ('$usuario','$nombre', '$apellidos', '$email', '$password', '$direccion', '$provincia')";
+								                $insert="INSERT INTO ".TABLA_USUARIO." (".COLUMNAS_USUARIO.") VALUES ('$usuario','$nombre', '$apellidos', '$email', '$password', '$direccion', '$provincia', 0)";
 
 								                $resultadoInsercion = mysqli_query($link, $insert);
 

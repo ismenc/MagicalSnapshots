@@ -3,7 +3,7 @@
 	session_start();
 
 	extract($_POST);
-	require 'database.php';
+	require '../databasename.php';
 	$link = mysqli_connect(ADDRES_SERVER, USER, PASS, SERVERMYSQL);
 
 	if (mysqli_connect_errno()) {
@@ -20,22 +20,26 @@
 								                	<a href=\"..\">Volver atrás</a></p>");
         }
         else{
-        	if(!password_verify($password, $row[0])){
-	            printf("<p align=\"center\">Datos de usuario <strong>incorrectos.</strong><br>
-								                	<a href=\"..\">Volver atrás</a></p>");
-	        }
-	        else{
-	        	session_cache_limiter();
-				//session_name('nombre');
-				
-				$_SESSION['username'] = $username;
-				if($row[1] == 1)
+        	if($row[1] == 1){
+		    	if(!password_verify($password, $row[0])){
+		            printf("<p align=\"center\">Datos de usuario <strong>incorrectos.</strong><br>
+									                	<a href=\"..\">Volver atrás</a></p>");
+		        }
+		        else{
+		        	session_cache_limiter();
+					//session_name('nombre');
+					
+
 					$_SESSION['admin'] = $username;
 
-				echo "<p align=\"center\">Bienvenido, <strong>"."$username".".</strong></p>";
-				echo "<a href=\"../index.php\">Página inicial</a>";
-				header('location: ../index.php');
-	        }
+					echo "<p align=\"center\">Bienvenido, <strong>"."$username".".</strong></p>";
+					echo "<a href=\"../index.php\">Página inicial</a>";
+					header('location: ../index.php');
+		        }
+		    }else{
+		    	printf("<p align=\"center\">Lo sentimos pero <strong>no eres administrador.</strong><br>
+									                	<a href=\"..\">Volver a intentarlo</a></p>");
+		    }
     
         }
             
