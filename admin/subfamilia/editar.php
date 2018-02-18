@@ -42,7 +42,6 @@ if (isset($_SESSION['admin'])){
 
     echo '<!-- Botones de navegación -->
     
-    <input class="botonAzul" name="volver" type="button" onclick="location.href=\'../index.php\';" value="Volver" /><br>
     <input id="ultimo" name="submit" type="submit" value="Seleccionar subfamilia">
   
 </form>';

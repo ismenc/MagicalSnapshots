@@ -1,7 +1,7 @@
 <?php
     ob_start();
-    require('../../php/fpdf.php');
-    require ('../../databasename.php');
+    require('../../../php/fpdf.php');
+    require ('../../../php/database.php');
         
     // Conectamos y comprobamos la conexión
     $link = mysqli_connect(ADDRES_SERVER, USER, PASS, SERVERMYSQL);
@@ -42,8 +42,6 @@
                 $str = iconv('UTF-8', 'windows-1252', 'Stock: '.$row[5]);
                 $pdf->cell(10, 0); $pdf->Cell(80, 5, $str, 0, 1);
                 $str = iconv('UTF-8', 'windows-1252', 'Subfamilia: '.$row[6]);
-                $pdf->cell(10, 0); $pdf->Cell(80, 5, $str, 0, 1);
-                $str = iconv('UTF-8', 'windows-1252', 'Carrito: '.$row[7]);
                 $pdf->cell(10, 0); $pdf->Cell(80, 5, $str, 0, 1);
                 
                 $pdf->Line(20, $pdf->GetY()+5, 210-20, $pdf->GetY()+5);

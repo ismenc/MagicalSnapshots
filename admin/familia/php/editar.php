@@ -1,20 +1,18 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <title>Respuesta editar</title>
-
-<link rel="stylesheet" type="text/css" href="../../styles.css">
-</head>
-<body>
-
-<!-- ------------------ PHP ------------------ -->
-            
 <?php
+  session_start();
+  $rutaCss = "../../..";
+  require($rutaCss.'/php/database.php');
+  include $rutaCss.'/admin/comienzo-pagina.php';
+?>
+
+
+<header>Editar un artículo</header>
+
+<?php 
+if (isset($_SESSION['admin'])){
 
     // Inicializamos y conectamos
     extract($_POST);
-    require '../../databasename.php';
     $link = mysqli_connect(ADDRES_SERVER, USER, PASS, SERVERMYSQL);
 
 
@@ -41,26 +39,23 @@
 
             // Interpretación de resultados
             if ($resultado){
-                echo "<header>Familia editada con éxito</header>";
+                echo "<header>Familia editada con éxito</header><br>";
             }
             else{
-                echo "<header>No fue posible editar la familia</header>";
+                echo "<header>No fue posible editar la familia</header><br>";
             }
         }
             
         mysqli_close($link);
     }
-?>     
-    <!-- ------------------ Fin PHP ------------------ -->
+    echo '<!-- ------------------ Fin PHP ------------------ -->
 		
     <form id="form">
-        <input class="botonAzul" type="button" onclick="location.href='../editar.php';" value="Editar otra familia" />
-
-        <input id="ultimo" type="button" onclick="location.href='../index.html';" value="Volver a administración de familias" />
-    </form>
+        <input class="botonAzul" type="button" onclick="location.href=\'../editar.php\';" value="Editar otra familia" />
+    </form>';
     
-    <canvas></canvas>
-    <script  src="../../index.js"></script>
-
-</body>
-</html>
+    } ?>
+    
+<?php 
+  include $rutaCss.'/admin/fin-pagina.php'; 
+?>

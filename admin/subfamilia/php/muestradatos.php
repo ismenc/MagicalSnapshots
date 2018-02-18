@@ -1,20 +1,16 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <title>Respuesta editar</title>
+<?php
+  session_start();
+  $rutaCss = "../../..";
+  require($rutaCss.'/php/database.php');
+  include $rutaCss.'/admin/comienzo-pagina.php';
+?>
 
-<link rel="stylesheet" type="text/css" href="../../styles.css">
-</head>
-<body>
-    
-    <form id="form">
 
-        <!-- ------------------ PHP ------------------ -->
+<header>Ver una subfamilia</header>
 
-<?php    
+<?php 
+if (isset($_SESSION['admin'])){
 
-    require '../../databasename.php';    
     extract($_GET);
 
     // Conectamos y comprobamos la conexión
@@ -37,27 +33,22 @@
         }
         else{
             // Mostramos los datos de subfamilia
-            echo "<input class=\"botonEstatico\" type=\"button\" value=\"Subamilia ".$row[0]."\" />";
-            echo "<input class=\"botonEstatico\" type=\"button\" value=\"Nombre: ".$row[1]."\" />";
-            echo "<textarea class=\"botonEstatico\" readonly >Descripción: ".$row[2]."</textarea>";
-            echo "<input class=\"botonEstatico\" type=\"button\" value=\"Familia Padre: ".$row[3]."\" />";
+            echo "<input class=\"botonEstatico\" type=\"button\" value=\"Subamilia ".$row[0]."\" /><br>";
+            echo "<input class=\"botonEstatico\" type=\"button\" value=\"Nombre: ".$row[1]."\" /><br>";
+            echo "<textarea class=\"botonEstatico\" readonly >Descripción: ".$row[2]."</textarea><br>";
+            echo "<input class=\"botonEstatico\" type=\"button\" value=\"Familia Padre: ".$row[3]."\" /><br>";
+            echo '<a href="../editar-datos.php?idsubfamilia='.$id.'">Editar esta subfamilia</a>';
 
             mysqli_free_result($result);
         }
         mysqli_close($link);
     }
-?>      
     
-    <!-- ------------------ PHP ------------------ -->
-        
-        <input class="botonAzul" type="button" onclick="location.href='../listar.php';" value="Volver al listado de subfamilias" />
+    echo '</form>';
 
-        <input id="ultimo" type="button" onclick="location.href='../index.html';" value="Volver a administración de subfamilias" />
-    </form>
-
-    <canvas></canvas>
-    <script  src="../../index.js"></script>
-
-</body>
-</html>
+} ?>
+    
+<?php 
+  include $rutaCss.'/admin/fin-pagina.php'; 
+?>
 

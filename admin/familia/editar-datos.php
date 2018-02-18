@@ -43,7 +43,6 @@ if (isset($_SESSION['admin'])){
 
     echo '<!-- Botones de navegación -->
     
-    <input class="botonAzul" name="volver" type="button" onclick="location.href=\'./editar.php\';" value="Volver" /><br>
     <input id="ultimo" name="submit" type="submit" value="Actualizar familia">
   
 </form>';

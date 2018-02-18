@@ -1,16 +1,15 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <title>Respuesta insertar</title>
-
-<link rel="stylesheet" type="text/css" href="../../styles.css">
-</head>
-<body>
-            
-            <!-- ------------------ PHP ------------------ -->
-            
 <?php
+  session_start();
+  $rutaCss = "../../..";
+  require($rutaCss.'/php/database.php');
+  include $rutaCss.'/admin/comienzo-pagina.php';
+?>
+
+
+<header>Insertar un artículo</header>
+
+<?php 
+if (isset($_SESSION['admin'])){
 
     // Inicializamos y conectamos
     extract($_POST);
@@ -24,8 +23,8 @@
     else{
 
         // Comprobamos que se seleccionen los spinners
-        if(empty($idlinea) || empty($idsubfamilia)){
-                printf("<header>Debe seleccionar un carrito y una subfamilia</header>");
+        if(empty($idsubfamilia)){
+                printf("<header>Debe seleccionar una subfamilia</header>");
         }
         else{
             // Evitar la inyeccción de codigo y encriptamos
@@ -54,7 +53,7 @@
             } else {
                 
                 // Inserta en la tabla
-                $insert="INSERT INTO ".TABLA_ARTICULO." (".COLUMNAS_ARTICULO.") VALUES ('$nombre','$nuevoNombre', '$descripcion', '$precio', '$stock', '$idsubfamilia', '$idlinea')";
+                $insert="INSERT INTO ".TABLA_ARTICULO." (".COLUMNAS_ARTICULO.") VALUES ('$nombre','$nuevoNombre', '$descripcion', '$precio', '$stock', '$idsubfamilia')";
 
                 $resultado = mysqli_query($link, $insert);
 
@@ -69,19 +68,14 @@
         }
         mysqli_close($link);
     }
-?>     
     
-    <!-- ------------------ Fin PHP ------------------ -->
 		
-    <form id="form">
-        <input class="botonAzul" type="button" onclick="location.href='../insertar.php';" value="Insertar otro artículo" />
+    echo '<form id="form">
+        <input class="botonAzul" type="button" onclick="location.href=\'../insertar.php\';" value="Insertar otro artículo" />
 
-        <input id="ultimo" type="button" onclick="location.href='../index.html';" value="Volver a administración de artículos" />
-    </form>
-
-    <canvas></canvas>
-    <script  src="../../index.js"></script>
+    </form>';
+} ?>
     
-</body>
-</html>
-
+<?php 
+  include $rutaCss.'/admin/fin-pagina.php'; 
+?>

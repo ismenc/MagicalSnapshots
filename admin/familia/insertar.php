@@ -21,7 +21,6 @@ if (isset($_SESSION['admin'])){
       
         <!-- Botones navegación -->
         
-        <input class="botonAzul" type="button" onclick="location.href=\'../index.html\';" value="Volver" /><br>
       <input id="ultimo" type="submit" value="Insertar">
       </fieldset>
     </form>';

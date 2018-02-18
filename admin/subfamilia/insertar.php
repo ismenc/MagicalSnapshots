@@ -23,7 +23,6 @@ if (isset($_SESSION['admin'])){
 
     echo '<!-- Botones de navegación --><br>
     
-    <input class="botonAzul" type="button" onclick="location.href=\'./index.html\';" value="Volver" /><br>
   <input id="ultimo" type="submit" value="Insertar">
   
 </form>';

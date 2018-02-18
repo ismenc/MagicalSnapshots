@@ -5,9 +5,11 @@
     include $rutaCss.'/admin/comienzo-pagina.php';
 ?>
 
+<header>Listado de familias</header>
+
     <form id="form">
 
-<!-- ------------------ PHP ------------------ -->
+
 
 <?php       
     if (isset($_SESSION['admin'])){
@@ -34,7 +36,6 @@
         <!-- ------------------ PHP ------------------ -->
 
             <input class="botonAzul" type="button" onclick="location.href=\'./php/listadoPdf.php\';" value="Generar listado PDF" /><br>
-            <input id="ultimo" type="button" onclick="location.href=\'./index.html\';" value="Volver a administración de familias" /><br>
         </form>';
     }
     ?>

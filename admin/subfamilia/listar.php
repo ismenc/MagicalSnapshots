@@ -6,7 +6,7 @@
 ?>
 
 
-<header>Insertar nueva subfamilia</header>
+<header>Listado de subfamilia</header>
 
 <?php 
 if (isset($_SESSION['admin'])){
@@ -40,7 +40,6 @@ if (isset($_SESSION['admin'])){
     echo '<!-- ------------------ PHP ------------------ -->
 
         <input class="botonAzul" type="button" onclick="location.href=\'./php/listadoPdf.php\';" value="Generar listado PDF" /><br>
-        <input id="ultimo" type="button" onclick="location.href=\'./index.html\';" value="Volver a administración de subfamilias" />
     </form>';
 }
 ?>

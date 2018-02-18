@@ -1,20 +1,18 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <title>Respuesta editar</title>
-
-<link rel="stylesheet" type="text/css" href="../../styles.css">
-</head>
-<body>
-            
-            <!-- ------------------ PHP ------------------ -->
-            
 <?php
+  session_start();
+  $rutaCss = "../../..";
+  require($rutaCss.'/php/database.php');
+  include $rutaCss.'/admin/comienzo-pagina.php';
+?>
+
+
+<header>Insertar una subfamilia</header>
+
+<?php 
+if (isset($_SESSION['admin'])){
 
     // Inicializamos y conectamos
     extract($_POST);
-    require '../../databasename.php';
     $link = mysqli_connect(ADDRES_SERVER, USER, PASS, SERVERMYSQL);
 
 
@@ -49,19 +47,14 @@
         }
         mysqli_close($link);
     }
-?>     
     
-    <!-- ------------------ Fin PHP ------------------ -->
 		
-    <form id="form">
-        <input class="botonAzul" type="button" onclick="location.href='../insertar.php';" value="Insertar otra subfamilia" />
+    echo '<form id="form">
+        <input class="botonAzul" type="button" onclick="location.href=\'../insertar.php\';" value="Insertar otra subfamilia" />
+    </form>';
 
-        <input id="ultimo" type="button" onclick="location.href='../index.html';" value="Volver a administración de subfamilias" />
-    </form>
-
-    <canvas></canvas>
-    <script  src="../../index.js"></script>
+} ?>
     
-</body>
-</html>
-
+<?php 
+  include $rutaCss.'/admin/fin-pagina.php'; 
+?>

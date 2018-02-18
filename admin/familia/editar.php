@@ -5,6 +5,8 @@
   include $rutaCss.'/admin/comienzo-pagina.php';
 ?>
 
+<header>Editar una familia</header>
+
 <form id="form" class="topBefore" action="editar-datos.php" method="get" autocomplete="off">
 		
     <!-- Elementos del formulario -->
@@ -37,7 +39,6 @@
   echo '
     <!-- Botones de navegación -->
     
-    <input class="botonAzul" name="volver" type="button" onclick="location.href=\'../index.php\';" value="Volver" /><br>
     <input id="ultimo" name="submit" type="submit" value="Seleccionar familia">
   
 </form>';

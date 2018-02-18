@@ -41,7 +41,6 @@ if (isset($_SESSION['admin'])){
     echo '<!-- ------------------ PHP ------------------ -->
 
         <input class="botonAzul" type="button" onclick="location.href=\'./php/listadoPdf.php\';" value="Generar listado PDF" /><br>
-        <input id="ultimo" type="button" onclick="location.href=\'./index.html\';" value="Volver a administración de artículos" />
     </form>';
 
 } ?>

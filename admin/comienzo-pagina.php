@@ -31,9 +31,9 @@
 		<div id="top-bar" class="container">
 			<div class="row">
 				<div class="span4">
-					<form method="GET" class="search_form" action="products.php">
+					<!--form method="GET" class="search_form" action="products.php">
 						<input type="text" name="titulo" class="input-block-level search-query" Placeholder="Por ejemplo: existe dios?">
-					</form>
+					</form-->
 				</div>
 				<div class="span8">
 					<div class="account pull-right">
@@ -61,7 +61,7 @@
             
             <section class="navbar main-menu">
 				<div class="navbar-inner main-menu">				
-					<a href="index.php" class="logo pull-left"><?php echo '<img src="'.$rutaCss.'/themes/images/logo.png" class="site_logo" alt="">';?></a>
+					<?php echo '<a href="'.$rutaCss.'/index.php" class="logo pull-left"><img src="'.$rutaCss.'/themes/images/logo.png" class="site_logo" alt="">';?></a>
 					<nav id="menu" class="pull-right">
                         
                         <?php

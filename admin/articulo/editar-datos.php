@@ -37,6 +37,7 @@ if (isset($_SESSION['admin'])){
                   printf("<header>Objeto no encontrado. Deja de intentarlo</header>", mysqli_connect_error());
               }
               else{ 
+                  echo '<input type="hidden" name="idarticulo" value="'.$idarticulo.'"/>';
                   echo '<input name="nombre" type="text" placeholder="Nombre" required maxlength="50" value="'.$row[0].'" /><br>';
                   echo '<input name="descripcion" type="text" placeholder="Descripción" maxlength="200" value="'.$row[1].'" /><br>';
                   echo '<input id="foto" name="foto" type="file" placeholder="Imagen del producto" accept="image/*" /><br>';
@@ -51,12 +52,8 @@ if (isset($_SESSION['admin'])){
       }
 
     include('../php/generaSpinnerSubfamilia.php'); echo '<br>';
-    include('../php/generaSpinnerLinea.php'); echo '<br>';
   
-    echo '<!-- Botones de navegación -->
-    
-    <input class="botonAzul" type="button" onclick="location.href='editar.php';" value="Volver" /><br>
-  <input id="ultimo" type="submit" value="Actualizar artículo">
+    echo '<input id="ultimo" type="submit" value="Actualizar artículo">
   
 </form>';
     

@@ -1,7 +1,7 @@
 <?php
     ob_start();
-    require('../../php/fpdf.php');
-    require ('../../databasename.php');
+    require('../../../php/fpdf.php');
+    require ('../../../php/database.php');
         
     // Conectamos y comprobamos la conexión
     $link = mysqli_connect(ADDRES_SERVER, USER, PASS, SERVERMYSQL);

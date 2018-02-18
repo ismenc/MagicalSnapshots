@@ -24,12 +24,8 @@ if (isset($_SESSION['admin'])){
     <input name="precio" type="number" step="0.01" placeholder="Precio" min="0" required /><br>
     <input name="stock" type="number" placeholder="Stock" min="0" required /><br>';
     include('../php/generaSpinnerSubfamilia.php'); 
-    echo '<br>';
-    include('../php/generaSpinnerLinea.php'); 
-  
     echo '<br><!-- Botones de navegación -->
     
-    <input class="botonAzul" type="button" onclick="location.href=\'./index.html\';" value="Volver" /><br>
   <input id="ultimo" type="submit" value="Insertar">
   
 </form>';

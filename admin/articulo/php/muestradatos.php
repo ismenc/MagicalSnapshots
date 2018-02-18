@@ -1,20 +1,16 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <title>Listado artículos</title>
+<?php
+  session_start();
+  $rutaCss = "../../..";
+  require($rutaCss.'/php/database.php');
+  include $rutaCss.'/admin/comienzo-pagina.php';
+?>
 
-<link rel="stylesheet" type="text/css" href="../../styles.css">
-</head>
-<body>
-    
-    <form id="form">
 
-        <!-- ------------------ PHP ------------------ -->
+<header>Ver un artículo</header>
 
-<?php    
+<?php 
+if (isset($_SESSION['admin'])){
 
-    require '../../databasename.php';    
     extract($_GET);
 
     // Conectamos y comprobamos conexión
@@ -36,32 +32,23 @@
         }
         else{ 
             // Mostramos los datos de la consulta
-            echo "<input class=\"botonEstatico\" type=\"button\" value=\"Artículo ".$row[0]."\" />";
-            echo "<input class=\"botonEstatico\" type=\"button\" value=\"Nombre: ".$row[1]."\" />";
-            echo "<img class=\"imgArticulo\" src=\"../../images/articulos/".$row[2]."\"></img>";
-            echo "<textarea class=\"botonEstatico\" readonly >Descripción: ".$row[3]."</textarea>";
-            echo "<input class=\"botonEstatico\" type=\"button\" value=\"Precio: ".$row[4]."\" />";
-            echo "<input class=\"botonEstatico\" type=\"button\" value=\"Stock: ".$row[5]."\" />";
-            echo "<input class=\"botonEstatico\" type=\"button\" value=\"ID subfamilia: ".$row[6]."\" />";
-            echo "<input class=\"botonEstatico\" type=\"button\" value=\"ID carrito: ".$row[7]."\" />";
+            echo "<input class=\"botonEstatico\" type=\"button\" value=\"Artículo ".$row[0]."\" /><br>";
+            echo "<input class=\"botonEstatico\" type=\"button\" value=\"Nombre: ".$row[1]."\" /><br>";
+            echo "<img class=\"imgArticulo\" src=\"../../images/articulos/".$row[2]."\"></img><br>";
+            echo "<textarea class=\"botonEstatico\" readonly >Descripción: ".$row[3]."</textarea><br>";
+            echo "<input class=\"botonEstatico\" type=\"button\" value=\"Precio: ".$row[4]."\" /><br>";
+            echo "<input class=\"botonEstatico\" type=\"button\" value=\"Stock: ".$row[5]."\" /><br>";
+            echo "<input class=\"botonEstatico\" type=\"button\" value=\"ID subfamilia: ".$row[6]."\" /><br>";
+            echo '<a href="../editar-datos.php?idarticulo='.$id.'">Editar este artículo</a>';
+
 
 
             mysqli_free_result($result);
         }
         mysqli_close($link);
     }
-?>      
+} ?>
     
-    <!-- ------------------ FIN PHP ------------------ -->
-        
-        <input class="botonAzul" type="button" onclick="location.href='../listar.php';" value="Volver al listado de subfamilias" />
-
-        <input id="ultimo" type="button" onclick="location.href='../index.html';" value="Volver a administración de artículos" />
-    </form>
-
-    <canvas></canvas>
-    <script  src="../../index.js"></script>
-
-</body>
-</html>
-
+<?php 
+  include $rutaCss.'/admin/fin-pagina.php'; 
+?>
