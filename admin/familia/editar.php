@@ -1,37 +1,47 @@
-<!DOCTYPE html>
-<html lang="es" >
-<head>
-  <meta charset="UTF-8">
-  <title>Editar familia</title>
+<?php
+  session_start();
+  $rutaCss = "../..";
+  require($rutaCss.'/php/database.php');
+  include $rutaCss.'/admin/comienzo-pagina.php';
+?>
 
-      <link rel="stylesheet" href="../styles.css">
-
-  
-</head>
-<body>
-
-        <header>Edita una familia existente</header>
-
-<form id="form" class="topBefore" action="./php/editar.php" method="post" autocomplete="off">
+<form id="form" class="topBefore" action="editar-datos.php" method="get" autocomplete="off">
 		
     <!-- Elementos del formulario -->
     
-    <?php require '../databasename.php'; include('../php/generaSpinnerFamilia.php'); ?>
-        
-	<input name="nombre" type="text" placeholder="Nuevo nombre" maxlength="30" required />
+    <?php
+    if (isset($_SESSION['admin'])){
 
-	<input name="descripcion" type="text" placeholder="Nueva descripción" maxlength="200" />
+      // Conectamos y comprobamos la conexión
+      $link = mysqli_connect(ADDRES_SERVER, USER, PASS, SERVERMYSQL);
+      if (mysqli_connect_errno()) {
+              printf("<header>Fallo en la conexión: %s</header>", mysqli_connect_error());
+      }
+      else{
 
-  
+          // Consultamos e imprimimos las opciones
+          $query="SELECT ID, NOMBRE, DESCRIPCION FROM ".TABLA_FAMILIA;
+          if ($result = mysqli_query($link, $query)) {
+              
+              echo"<select name=\"idfamilia\" class=\"spinner\"><br>";
+              echo "<option value=\"\" disabled selected>ID de familia</option><br>";
+                  
+              while ($row = mysqli_fetch_row($result)) {
+                  echo "<option value=\"".$row[0]."\">".$row[0]." - ".$row[1]."</option><br>";
+              }
+              echo "</select><br>";
+              mysqli_free_result($result);
+          }
+          mysqli_close($link);
+      }
+  echo '
     <!-- Botones de navegación -->
     
-    <input class="botonAzul" name="volver" type="button" onclick="location.href='./index.html';" value="Volver" />
-    <input id="ultimo" name="submit" type="submit" value="Actualizar">
+    <input class="botonAzul" name="volver" type="button" onclick="location.href=\'../index.php\';" value="Volver" /><br>
+    <input id="ultimo" name="submit" type="submit" value="Seleccionar familia">
   
-</form>
+</form>';
+}
+  ?>
 
-    <canvas></canvas>
-<script  src="../index.js"></script>
-    
-</body>
-</html>
+<?php include $rutaCss.'/admin/fin-pagina.php'; ?>

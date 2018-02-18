@@ -1,21 +1,21 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <title>Respuesta listar</title>
+<?php
+  session_start();
+  $rutaCss = "../..";
+  require($rutaCss.'/php/database.php');
+  include $rutaCss.'/admin/comienzo-pagina.php';
+?>
 
-<link rel="stylesheet" type="text/css" href="../styles.css">
-</head>
-<body>
 
+<header>Listado de articulos</header>
+
+<?php 
+if (isset($_SESSION['admin'])){
+  echo '
     <form id="form">
 
-<!-- ------------------ PHP ------------------ -->
+<!-- ------------------ PHP ------------------ -->';
 
-<?php       
-        
-    // Conectamos y comprobamos la conexión
-    require '../databasename.php';
+
     $link = mysqli_connect(ADDRES_SERVER, USER, PASS, SERVERMYSQL);
 
     if (mysqli_connect_errno()) {
@@ -30,23 +30,22 @@
 
             // Imprimimos un boton con enlace a cada artículo
             while ($row = mysqli_fetch_row($result)) {
-                echo "<input class=\"boton\" type=\"button\" onclick=\"location.href='./php/muestradatos.php?id=".$row[0]."';\" value=\"".$row[1]."\" />";
+                echo "<input class=\"boton\" type=\"button\" onclick=\"location.href='./php/muestradatos.php?id=".$row[0]."';\" value=\"".$row[1]."\" /><br>";
             }
             mysqli_free_result($result);
         }
         mysqli_close($link);
 
     }
-?>      
     
-    <!-- ------------------ PHP ------------------ -->
+    echo '<!-- ------------------ PHP ------------------ -->
 
-        <input class="botonAzul" type="button" onclick="location.href='./php/listadoPdf.php';" value="Generar listado PDF" />
-        <input id="ultimo" type="button" onclick="location.href='./index.html';" value="Volver a administración de artículos" />
-    </form>
+        <input class="botonAzul" type="button" onclick="location.href=\'./php/listadoPdf.php\';" value="Generar listado PDF" /><br>
+        <input id="ultimo" type="button" onclick="location.href=\'./index.html\';" value="Volver a administración de artículos" />
+    </form>';
 
-    <canvas></canvas>
-    <script  src="../index.js"></script>
-
-</body>
-</html>
+} ?>
+    
+<?php 
+  include $rutaCss.'/admin/fin-pagina.php'; 
+?>

@@ -9,8 +9,7 @@ define('USER',  'root');
 define('PASS',  '123456');
 
 
-define ('RAIZ_WEB', "C:/xampp/htdocs/dashboard/MagicalSnapshots/admin");
-	//realpath(dirname(__FILE__)));
+define (realpath(dirname(__FILE__)));
 
 define('TABLA_FAMILIA', 'familia');
 define('COLUMNAS_FAMILIA', 'NOMBRE, DESCRIPCION');

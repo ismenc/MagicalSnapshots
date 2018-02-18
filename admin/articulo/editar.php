@@ -1,41 +1,55 @@
-<!DOCTYPE html>
-<html lang="es" >
-<head>
-  <meta charset="UTF-8">
-  <title>Editar artículo</title>
+<?php
+  session_start();
+  $rutaCss = "../..";
+  require($rutaCss.'/php/database.php');
+  include $rutaCss.'/admin/comienzo-pagina.php';
+?>
 
-      <link rel="stylesheet" href="../styles.css">
 
-  
-</head>
+<header>Editar un artículo</header>
 
-<body>
+<?php 
+if (isset($_SESSION['admin'])){
+  echo '
+<form id="form"  enctype="multipart/form-data" class="topBefore" action="editar-datos.php" method="get" autocomplete="off">
 
-    <header>Editar un artículo</header>
-
-<form id="form"  enctype="multipart/form-data" class="topBefore" action="./php/editar.php" method="post" autocomplete="off">
-
-    <!-- Elementos del formulario -->
+    <!-- Elementos del formulario -->';
 	
-    <?php require '../databasename.php';include('../php/generaSpinnerArticulo.php'); ?>
-    <input name="nombre" type="text" placeholder="Nombre" required maxlength="50" />
-    <input name="descripcion" type="text" placeholder="Descripción" maxlength="200" />
-    <input id="foto" name="foto" type="file" placeholder="Imagen del producto" accept="image/*" />
-    <label id="subir" for="foto" >Subir una imagen</label>
-    <input name="precio" type="number" step="0.01" placeholder="Precio" min="0" required />
-    <input name="stock" type="number" placeholder="Stock" min="0" required />
-    <?php include('../php/generaSpinnerSubfamilia.php'); ?>
-    <?php include('../php/generaSpinnerLinea.php'); ?>
-  
-    <!-- Botones de navegación -->
-    
-    <input class="botonAzul" type="button" onclick="location.href='./index.html';" value="Volver" />
-  <input id="ultimo" type="submit" value="Editar">
-  
-</form>
-    
-<canvas></canvas>
-<script  src="../index.js"></script>
 
-</body>
-</html>
+
+      // Conectamos y comprobamos la conexión
+      $link = mysqli_connect(ADDRES_SERVER, USER, PASS, SERVERMYSQL);
+      if (mysqli_connect_errno()) {
+              printf("<header>Fallo en la conexión: %s</header>", mysqli_connect_error());
+      }
+      else{
+
+          // Consultamos e imprimimos las opciones
+          $query="SELECT ID, NOMBRE FROM ".TABLA_ARTICULO;
+          if ($result = mysqli_query($link, $query)) {
+              
+              echo"<select name=\"idarticulo\" class=\"spinner\">";
+              echo "<option value=\"\" disabled selected>ID del artículo</option>";
+                  
+              while ($row = mysqli_fetch_row($result)) {
+                  echo "<option value=\"".$row[0]."\">".$row[0]." - ".$row[1]."</option>";
+              }
+              echo "</select><br>";
+              mysqli_free_result($result);
+          }
+          mysqli_close($link);
+      }
+
+
+  
+    echo '<!-- Botones de navegación -->
+    
+    <input class="botonAzul" type="button" onclick="location.href=\'../index.php\';" value="Volver" /><br>
+  <input id="ultimo" type="submit" value="Seleccionar artículo">
+  
+</form>';
+} ?>
+    
+<?php 
+  include $rutaCss.'/admin/fin-pagina.php'; 
+?>

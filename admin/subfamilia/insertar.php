@@ -1,37 +1,35 @@
-<!DOCTYPE html>
-<html lang="es" >
-<head>
-  <meta charset="UTF-8">
-  <title>Insertar subfamilia</title>
+<?php
+  session_start();
+  $rutaCss = "../..";
+  require($rutaCss.'/php/database.php');
+  include $rutaCss.'/admin/comienzo-pagina.php';
+?>
 
-      <link rel="stylesheet" href="../styles.css">
 
-  
-</head>
+<header>Insertar nueva subfamilia</header>
 
-<body>
-
-		<header>Insertar nueva subfamilia</header>
-
+<?php 
+if (isset($_SESSION['admin'])){
+  echo '
 <form id="form" class="topBefore" action="./php/insertar.php" method="post" autocomplete="off">
 
     <!-- Elementos del formulario -->
 		
-    <input name="nombre" type="text" placeholder="Nombre" required maxlength="30" />
+    <input name="nombre" type="text" placeholder="Nombre" required maxlength="30" /><br>
     
-    <input name="descripcion" type="text" placeholder="Descripción" maxlength="200" />
-
-    <?php require '../databasename.php'; include('../php/generaSpinnerFamilia.php'); ?>
-
-    <!-- Botones de navegación -->
+    <input name="descripcion" type="text" placeholder="Descripción" maxlength="200" /><br>';
     
-    <input class="botonAzul" type="button" onclick="location.href='./index.html';" value="Volver" />
+    include('../php/generaSpinnerFamilia.php');
+
+    echo '<!-- Botones de navegación --><br>
+    
+    <input class="botonAzul" type="button" onclick="location.href=\'./index.html\';" value="Volver" /><br>
   <input id="ultimo" type="submit" value="Insertar">
   
-</form>
+</form>';
+}
+?>
     
-<canvas></canvas>
-<script  src="../index.js"></script>
-
-</body>
-</html>
+<?php 
+  include $rutaCss.'/admin/fin-pagina.php'; 
+?>

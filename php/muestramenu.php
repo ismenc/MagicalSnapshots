@@ -12,6 +12,7 @@
             $consultaFamilia="SELECT ID, NOMBRE FROM ".TABLA_FAMILIA;
             if ($result = mysqli_query($link, $consultaFamilia)) { 
                 echo"<ul>\n";
+                echo '<li><a href="./products.php" >Todas las categorías</a></li>';
                 while ($row = mysqli_fetch_row($result)) {
                     // Imprime familia
                     echo "\t<li><a href=\"./products.php?cat=".$row[0]."\" target=\"_top\">".$row[1]."</a>\n";

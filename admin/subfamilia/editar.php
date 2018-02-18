@@ -1,39 +1,54 @@
-<!DOCTYPE html>
-<html lang="es" >
-<head>
-  <meta charset="UTF-8">
-  <title>Editar subfamilia</title>
+<?php
+  session_start();
+  $rutaCss = "../..";
+  require($rutaCss.'/php/database.php');
+  include $rutaCss.'/admin/comienzo-pagina.php';
+?>
 
-      <link rel="stylesheet" href="../styles.css">
 
-  
-</head>
-<body>
+<header>Edita una subfamilia existente</header>
 
-        <header>Edita una subfamilia existente</header>
+<?php 
+if (isset($_SESSION['admin'])){
+  echo '
 
-<form id="form" class="topBefore" action="./php/editar.php" method="post" autocomplete="off">
+
+<form id="form" class="topBefore" action="editar-datos.php" method="get" autocomplete="off">
 		
-    <!-- Elementos del formulario -->
+    <!-- Elementos del formulario -->';
 
-    <?php require '../databasename.php'; include('../php/generaSpinnerSubfamilia.php'); ?>
+    // Conectamos y comprobamos la conexión
+    $link = mysqli_connect(ADDRES_SERVER, USER, PASS, SERVERMYSQL);
+    if (mysqli_connect_errno()) {
+            printf("<header>Fallo en la conexión: %s</header>", mysqli_connect_error());
+    }
+    else{
 
-    <input name="nombre" type="text" placeholder="Nuevo nombre" required maxlength="30" />
+        // Consultamos e imprimimos las opciones
+        $query="SELECT ID, NOMBRE FROM ".TABLA_SUBFAMILIA;
+        if ($result = mysqli_query($link, $query)) {
+            echo"<select name=\"idsubfamilia\" class=\"spinner\" >";
+            echo "<option value=\"\" disabled selected>ID de subfamilia</option>";
+                
+            while ($row = mysqli_fetch_row($result)) {
+                echo "<option value=\"".$row[0]."\">".$row[0]." - ".$row[1]."</option>";
+            }
+            echo "</select><br>";
+            mysqli_free_result($result);
+        }
+        mysqli_close($link);
+    }
 
-    <input name="descripcion" type="text" placeholder="Nueva descripción" maxlength="200" />
 
-    <?php include('../php/generaSpinnerFamilia.php'); ?>
-
-
-    <!-- Botones de navegación -->
+    echo '<!-- Botones de navegación -->
     
-    <input class="botonAzul" name="volver" type="button" onclick="location.href='./index.html';" value="Volver" />
-    <input id="ultimo" name="submit" type="submit" value="Actualizar">
+    <input class="botonAzul" name="volver" type="button" onclick="location.href=\'../index.php\';" value="Volver" /><br>
+    <input id="ultimo" name="submit" type="submit" value="Seleccionar subfamilia">
   
-</form>
+</form>';
+}
+?>
 
-    <canvas></canvas>
-    <script  src="../index.js"></script>
-    
-</body>
-</html>
+<?php 
+  include $rutaCss.'/admin/fin-pagina.php'; 
+?>
