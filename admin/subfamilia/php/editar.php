@@ -23,7 +23,7 @@ if (isset($_SESSION['admin'])){
     else{
         // Comprobamos que seleccione una familia y subfamilia
         if(empty($idsubfamilia) || empty($idfamilia)){
-            printf("<header>Debe seleccionar una subfamilia y familia</header>");
+            printf("<header>Debe seleccionar una subfamilia y familia ".$idsubfamilia." o ".$idfamilia."</header>");
         }
         else{
             // Evitar la inyeccción de codigo PERSONALIZABLE DE AQUI ABAJO

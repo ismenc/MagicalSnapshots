@@ -33,6 +33,7 @@ if (isset($_SESSION['admin'])){
                   printf("<header>Objeto no encontrado. Deja de intentarlo</header>", mysqli_connect_error());
               }
               else{ 
+                echo '<input type="hidden" name="idfamilia" value="'.$idfamilia.'"/>';
               echo '<input name="nombre" type="text" placeholder="Nuevo nombre" maxlength="30" required value="'.$row[0].'" /><br>';
 
               echo '<input name="descripcion" type="text" placeholder="Nueva descripción" maxlength="200"  value="'.$row[1].'" /><br>';

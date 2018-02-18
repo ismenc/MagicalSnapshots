@@ -13,7 +13,6 @@ if (isset($_SESSION['admin'])){
 
     // Inicializamos y conectamos
     extract($_POST);
-    require '../../databasename.php';
     $link = mysqli_connect(ADDRES_SERVER, USER, PASS, SERVERMYSQL);
 
     // Comprobación de conexión
@@ -39,7 +38,7 @@ if (isset($_SESSION['admin'])){
             $maxId=$cursor[0];
 
             /* ----------- Procesamos la imagen ----------- */
-            $directorioImagenes = RAIZ_WEB."/images/articulos/";
+            $directorioImagenes = "../../images/articulos/";//RAIZ_WEB."/images/articulos/";
             $nombreArchivo = $directorioImagenes . basename($_FILES["foto"]["name"]);
             $tipoImagen = pathinfo($nombreArchivo,PATHINFO_EXTENSION);
             $nuevoNombre=$maxId.".".$tipoImagen;

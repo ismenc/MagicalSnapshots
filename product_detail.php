@@ -132,11 +132,11 @@
 											            if ($result = mysqli_query($link, $consultaArticulo)) { 
 											                while ($row = mysqli_fetch_row($result)) {
 											                    echo "<li class=\"span3\"><div class=\"product-box\"><span class=\"sale_tag\"></span>";
-											                    echo "<p><a href=\"../product_detail.php?id=".$row[0];
+											                    echo "<p><a href=\"product_detail.php?id=".$row[0];
 											                    echo "\"><img src=\"admin/images/articulos/".$row[1];
 											                    echo "\" alt=\"\" /></a></p>";
-											                    echo "<a href=\"../product_detail.php?id=".$row[0]."\" class=\"title\">".$row[2]."</a><br/>";
-											                    echo "<a href=\"../product_detail.php?id=".$row[0]."\" class=\"category\">".$row[3]."</a>";
+											                    echo "<a href=\"product_detail.php?id=".$row[0]."\" class=\"title\">".$row[2]."</a><br/>";
+											                    echo "<a href=\"product_detail.php?id=".$row[0]."\" class=\"category\">".$row[3]."</a>";
 											                    echo "<p class=\"price\">".$row[4]." €</p></div></li>";
 											                }
 											                mysqli_free_result($result);
@@ -161,11 +161,11 @@
 											            if ($result = mysqli_query($link, $consultaArticulo)) { 
 											                while ($row = mysqli_fetch_row($result)) {
 											                    echo "<li class=\"span3\"><div class=\"product-box\"><span class=\"sale_tag\"></span>";
-											                    echo "<p><a href=\"../product_detail.php?id=".$row[0];
+											                    echo "<p><a href=\"product_detail.php?id=".$row[0];
 											                    echo "\"><img src=\"admin/images/articulos/".$row[1];
 											                    echo "\" alt=\"\" /></a></p>";
-											                    echo "<a href=\"../product_detail.php?id=".$row[0]."\" class=\"title\">".$row[2]."</a><br/>";
-											                    echo "<a href=\"../product_detail.php?id=".$row[0]."\" class=\"category\">".$row[3]."</a>";
+											                    echo "<a href=\"product_detail.php?id=".$row[0]."\" class=\"title\">".$row[2]."</a><br/>";
+											                    echo "<a href=\"product_detail.php?id=".$row[0]."\" class=\"category\">".$row[3]."</a>";
 											                    echo "<p class=\"price\">".$row[4]." €</p></div></li>";
 											                }
 											                mysqli_free_result($result);

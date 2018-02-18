@@ -13,8 +13,11 @@
 			<section class="main-content">
 				
 				<div class="row">						
-					<div class="span12">								
+					<div class="span7" style="margin: 0 25%;">								
 						<ul class="thumbnails listing-products">
+
+
+							<!-- ------------------------------------ Variables de muestra de productos ------------------------------------ -->
 
 							<?php
 								//extract($_GET);
@@ -46,7 +49,7 @@
 						        	}
 
 						        	// Variables que afectan a cómo se muestran los artículos
-						        	$artPorPag = 4;
+						        	$artPorPag = 6;
 						        	$totalArticulos = mysqli_fetch_row(mysqli_query($link, "SELECT COUNT(a.ID) FROM ".TABLA_ARTICULO." a, ".TABLA_SUBFAMILIA." s ".$where));
 						        	$totalPaginas = $totalArticulos[0]/$artPorPag;
 						        	$limites = "LIMIT ".$artPorPag." OFFSET ".($artPorPag*$pag);
@@ -77,6 +80,7 @@
 							
 						</ul>								
 						<hr>
+						<!-- ---------------------------------- Paginacion -------------------------------------- -->
 						<div class="pagination pagination-small pagination-centered">
 							<ul>
 							<?php

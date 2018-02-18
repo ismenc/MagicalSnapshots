@@ -34,6 +34,7 @@ if (isset($_SESSION['admin'])){
                 printf("<header>Objeto no encontrado. Deja de intentarlo</header>", mysqli_connect_error());
             }
             else{
+                echo '<input type="hidden" name="idsubfamilia" value="'.$idsubfamilia.'"/>';
                 echo '<input name="nombre" type="text" placeholder="Nuevo nombre" required maxlength="30" value="'.$row[0].'" /><br>';
 
                 echo '<input name="descripcion" type="text" placeholder="Nueva descripción" maxlength="200" value="'.$row[1].'" /><br>';
@@ -46,9 +47,7 @@ if (isset($_SESSION['admin'])){
     include('../php/generaSpinnerFamilia.php');
 
 
-    echo '<!-- Botones de navegación -->
-    
-    <input id="ultimo" name="submit" type="submit" value="Actualizar subfamilia">
+    echo '<br><input id="ultimo" name="submit" type="submit" value="Actualizar subfamilia">
   
 </form>';
 }

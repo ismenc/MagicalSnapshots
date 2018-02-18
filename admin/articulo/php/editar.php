@@ -35,7 +35,7 @@ if (isset($_SESSION['admin'])){
             $maxId=$idarticulo;
 
             /* ----------- Procesamos la imagen ----------- */
-            $directorioImagenes = RAIZ_WEB."/images/articulos/";
+            $directorioImagenes = "../../images/articulos/";//RAIZ_WEB."/images/articulos/";
             $nombreArchivo = $directorioImagenes . basename($_FILES["foto"]["name"]);
             $tipoImagen = pathinfo($nombreArchivo,PATHINFO_EXTENSION);
             $nuevoNombre=$maxId.".".$tipoImagen;
@@ -49,7 +49,7 @@ if (isset($_SESSION['admin'])){
             } else {
 
                 // Inserta en la tabla
-                $update="UPDATE ".TABLA_ARTICULO." SET NOMBRE ='$nombre', FOTO='$nuevoNombre', DESCRIPCION='$descripcion', PRECIO='$precio', STOCK='$stock', IDSUBFAMILIA='$idsubfamilia', IDLINEA='$idlinea' WHERE ID='$idarticulo'";
+                $update="UPDATE ".TABLA_ARTICULO." SET NOMBRE ='$nombre', FOTO='$nuevoNombre', DESCRIPCION='$descripcion', PRECIO='$precio', STOCK='$stock', IDSUBFAMILIA='$idsubfamilia' WHERE ID='$idarticulo'";
 
                 $resultado = mysqli_query($link, $update);
 

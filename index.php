@@ -30,7 +30,12 @@
 								<p><span> paisajes. ¡Imposible!</span></p>
 							</div>
 						</li>
-                        
+						<li>
+							<img src="themes/images/carousel/banner-4.jpeg" alt="" />
+						</li>
+						<li>
+							<img src="themes/images/carousel/banner-5.jpg" alt="" />
+						</li>                        
 					</ul>
 				</div>			
 			</section>

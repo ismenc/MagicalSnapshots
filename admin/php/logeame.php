@@ -3,7 +3,7 @@
 	session_start();
 
 	extract($_POST);
-	require '../databasename.php';
+	require '../../php/database.php';
 	$link = mysqli_connect(ADDRES_SERVER, USER, PASS, SERVERMYSQL);
 
 	if (mysqli_connect_errno()) {
@@ -37,8 +37,7 @@
 					header('location: ../index.php');
 		        }
 		    }else{
-		    	printf("<p align=\"center\">Lo sentimos pero <strong>no eres administrador.</strong><br>
-									                	<a href=\"..\">Volver a intentarlo</a></p>");
+		    	header('location: ../no-eres-admin.php');
 		    }
     
         }
