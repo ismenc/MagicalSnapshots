@@ -10,8 +10,7 @@
     }
     else{
 
-        $consulta = "SELECT ID, NOMBRE, PRECIO FROM ARTICULOS where ID = '$id'";
-
+        $consulta = "SELECT ID, NOMBRE, PRECIO FROM articulos WHERE ID=".$id;
                 
         if ($result = mysqli_query($link, $consulta)) {
                     

@@ -75,7 +75,7 @@
 									<p>&nbsp;</p>
 									<label>Cantidad:</label>
 									<?php echo '<input type="hidden" name="id" value="'.$articulo[0].'">'; ?>
-									<input type="number" min="1" name="cantidad" class="span1" placeholder="1">
+									<input type="number" min="1" name="cantidad" class="span1" placeholder="1" value="1">
 									<button class="btn btn-inverse" type="submit">Añadir al carro</button>
 								</form>
 							</div>							
