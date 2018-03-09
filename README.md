@@ -1,6 +1,8 @@
 # MagicalSnapshots
 
-Tienda web que oferta impresión de fotografías de Ismael Núñez.
+***MagicalSnapshots*** es un proyecto en el cuál abandono mis mejores fotografías anónimamente, en el lugar que se tomaron y a merced de los viandantes. Se trata de otorgarle un toque de *magia* a un acto altruista. El proyecto que figura en estas páginas es simplemente un e-commerce para una de mis asignaturas y un reflejo de mis habilidades. Puedes visitar mi [Pinterest](https://www.pinterest.es/ismenc/pins/)<br>
+
+La tienda web oferta impresión de fotografías de Ismael Núñez.
 
 <p align="center"><img src="doc/main.png" alt=""></p>
 
